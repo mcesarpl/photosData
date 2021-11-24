@@ -3,6 +3,8 @@ import { enumParams } from "src/global";
 import { HttpClientFactory } from "@factories/HttpClientFactory";
 import { FilterParams } from "src/utils/FilterParams";
 import { iPhoto } from "src/interfaces";
+import { StatusCodes, ReasonPhrases } from 'http-status-codes';
+import { Type } from "typescript";
 
 const adapter = HttpClientFactory.create();
 
@@ -11,30 +13,32 @@ export class PhotosController {
     try {
       const { body } = await adapter.get<iPhoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
       const filtered = FilterParams.filter(body);
-      return res.status(200).json({filtered});
+      return res.status(StatusCodes.OK).json({filtered});
     } catch(error) {
-      console.log(error.stack);
-      return res.status(500).send();
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: ReasonPhrases.INTERNAL_SERVER_ERROR, error: error.message});
     }
   }
 
   static async filterProprieties(req: Request, res: Response) {
     try {
-      const list = await adapter.get(enumParams.ARG_TYPE.URLPHONESLIST);
-      return res.status(200).json({list});
+      const { body } = await adapter.get<iPhoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
+      const filtered = FilterParams.someParams(body);
+      const sorted = FilterParams.sortByTitle(filtered);
+      
+      return res.status(StatusCodes.OK).json({sorted});
     } catch(error) {
       console.log(error.stack);
-      return res.status(500).send();
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
     }
   }
 
   static async getFormated(req: Request, res: Response) {
     try {
-      const list = await adapter.get(enumParams.ARG_TYPE.URLPHONESLIST);
-      return res.status(200).json({list});
+      const list = await adapter.get<iPhoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
+      return res.status(StatusCodes.OK).json({list});
     } catch(error) {
       console.log(error.stack);
-      return res.status(500).send();
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
     }
   }
 }
