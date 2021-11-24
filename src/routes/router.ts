@@ -1,14 +1,14 @@
 import express from 'express';
-import PhotosControllerFactory from '@factories/PhotosControllerFactory';
+import { PhotosController } from 'src/controllers/PhotosController';
 
 const router = express.Router();
 
-router.get('/photosurls', PhotosControllerFactory.getPhotosUrls);
+router.get('/photosurls', PhotosController.getPhotosUrls);
 
-router.get('/photosurls/:id', PhotosControllerFactory.getPhotosUrls);
+router.get('/photosurls/:id', PhotosController.getPhotosUrls);
 
-router.get('/photosurls/:id', PhotosControllerFactory.getPhotosUrls);
+router.get('/photosurls/:id', PhotosController.getPhotosUrls);
 
-router.get('/photosurls/:id', PhotosControllerFactory.getPhotosUrls);
+router.get('/photosurls/:id', PhotosController.getPhotosUrls);
 
 export default router;

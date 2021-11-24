@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { iHttpClient, iHttpClientResponse } from 'src/interfaces';
+import { iHttpClient, iHttpClientResponse, iPhoto } from 'src/interfaces';
 
 export class AxiosAdapter implements iHttpClient {
   async get<T>(url: string): Promise<iHttpClientResponse<T>> {
