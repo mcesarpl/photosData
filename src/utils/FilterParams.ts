@@ -18,6 +18,13 @@ export class FilterParams {
       if(a['title'] < b['title']) { return -1; }
       if(a['title'] > b['title']) { return 1; }
       return 0;
-  })
+    });
+  }
+
+  static patternInTitle(photosArray: iPhoto[]): iPhoto[] {
+    return photosArray.filter((photo) => {
+      const { title } = photo;
+      return title.includes(' et ');
+    });
   }
 }

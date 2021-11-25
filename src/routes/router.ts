@@ -7,8 +7,8 @@ router.get('/photosurls', PhotosController.getPhotosUrls);
 
 router.get('/filterproprieties', PhotosController.filterProprieties);
 
-router.get('/photosurls', PhotosController.getPhotosUrls);
+router.get('/patterntitle', PhotosController.patternTitle);
 
-router.get('/photosurls', PhotosController.getPhotosUrls);
+router.get('/formated', PhotosController.getFormated);
 
 export default router;
