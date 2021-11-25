@@ -4,7 +4,6 @@ import { HttpClientFactory } from "@factories/HttpClientFactory";
 import { FilterParams } from "src/utils/FilterParams";
 import { iPhoto } from "src/interfaces";
 import { StatusCodes, ReasonPhrases } from 'http-status-codes';
-import { Type } from "typescript";
 import { FormatArray } from "src/utils/FormatArray";
 
 const adapter = HttpClientFactory.create();
