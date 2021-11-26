@@ -7,11 +7,13 @@
   "license": "Apache",
   "scripts": {
     "dev": "cross-env NODE_ENV=\"dev\" ts-node-dev -r tsconfig-paths/register -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/index.ts",
-    "lint": "eslint ./src --ext .ts --fix",
-    "test": "jest"
+    "lint": "eslint ./src ./tests --ext .ts",
+    "lint:fix": "eslint ./src ./tests --ext .ts --fix",
+    "test": "jest --projects ./tests --passWithNoTests --silent --noStackTrace --runInBand"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.3",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "eslint": "^8.2.0",
@@ -27,9 +29,9 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.5.1",
-    "http-status-codes": "^2.1.4",
-    "dotenv": "^10.0.0"
+    "http-status-codes": "^2.1.4"
   }
 }
