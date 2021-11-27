@@ -6,8 +6,10 @@ import { Iphoto } from '../interfaces';
 import { FormatArray } from '../utils/FormatArray';
 import { FilterParams } from '../utils/FilterParams';
 import { SortArrays } from '../utils/SortArrays';
+import Logger from '../services/Logger';
 
 const adapter = HttpClientFactory.create();
+const logger = Logger.logger;
 
 export class PhotosController {
   static async getPhotosUrls(req: Request, res: Response) {
@@ -16,9 +18,9 @@ export class PhotosController {
       const urls = FilterParams.filterUrl(body);
       return res.status(StatusCodes.OK).json({ urls });
     } catch (error) {
+      logger.error(error.message);
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         message: ReasonPhrases.INTERNAL_SERVER_ERROR,
-        error: error.message,
       });
     }
   }
@@ -31,8 +33,10 @@ export class PhotosController {
       
       return res.status(StatusCodes.OK).json({ mainParams });
     } catch (error) {
-      console.log(error.stack);
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+      logger.error(error.message);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+      });
     }
   }
 
@@ -43,8 +47,10 @@ export class PhotosController {
       
       return res.status(StatusCodes.OK).json({ sortedByTitle });
     } catch (error) {
-      console.log(error.stack);
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+      logger.error(error.message);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+      });
     }
   }
 
@@ -55,8 +61,10 @@ export class PhotosController {
       const formated = FormatArray.format(sorted);
       return res.status(StatusCodes.OK).json({ formated });
     } catch (error) {
-      console.log(error.stack);
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
+      logger.error(error.message);
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+      });
     }
   }
 }
