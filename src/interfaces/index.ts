@@ -1,3 +1,3 @@
-export * from './iHttpClientResponse';
-export * from './iHttpClient';
-export * from './iPhoto';
+export * from './IHttpClientResponse';
+export * from './IHttpClient';
+export * from './Iphoto';

@@ -1,5 +1,5 @@
-import { iHttpClientResponse } from ".";
+import { IHttpClientResponse } from '.';
 
-export interface iHttpClient {
-  get<T>(url: string ): Promise<iHttpClientResponse<T>>;
+export interface IHttpClient {
+  get<T>(url: string ): Promise<IHttpClientResponse<T>>;
 }

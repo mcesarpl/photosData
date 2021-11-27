@@ -1,7 +1,7 @@
-export interface iPhoto {
-  albumId: Number,
-  id: Number,
-  title: String,
-  url: String,
-  thumbnailUrl: String
+export interface Iphoto {
+  albumId: number,
+  id: number,
+  title: string,
+  url: string,
+  thumbnailUrl: string
 }
