@@ -2,7 +2,7 @@ import { AxiosAdapter } from '../../src/adapters/AxiosAdapter';
 import { iPhoto } from '../../src/interfaces/iPhoto';
 import { enumParams } from "../../src/global";
 
-describe('Axios Tests', () => {
+describe('Axios Adapter Tests', () => {
   it('should return value when called', async () => {
     const axiosAdapter = new AxiosAdapter();
 

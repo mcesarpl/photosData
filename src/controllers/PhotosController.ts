@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { enumParams } from "src/global";
 import { HttpClientFactory } from "@factories/HttpClientFactory";
-import { FilterParams } from "src/utils/FilterParams";
 import { iPhoto } from "src/interfaces";
 import { StatusCodes, ReasonPhrases } from 'http-status-codes';
 import { FormatArray } from "src/utils/FormatArray";
+import { FilterParams } from "src/utils/FilterParams";
+import { SortArrays } from "src/utils/SortArrays";
 
 const adapter = HttpClientFactory.create();
 
@@ -12,7 +13,7 @@ export class PhotosController {
   static async getPhotosUrls(req: Request, res: Response) {
     try {
       const { body } = await adapter.get<iPhoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
-      const filtered = FilterParams.filter(body);
+      const filtered = FilterParams.filterUrl(body);
       return res.status(StatusCodes.OK).json({filtered});
     } catch(error) {
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({message: ReasonPhrases.INTERNAL_SERVER_ERROR, error: error.message});
@@ -22,8 +23,8 @@ export class PhotosController {
   static async filterProprieties(req: Request, res: Response) {
     try {
       const { body } = await adapter.get<iPhoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
-      const filtered = FilterParams.someParams(body);
-      const sorted = FilterParams.sortByTitle(filtered);
+      const filtered = FilterParams.mainParams(body);
+      const sorted = SortArrays.sortByTitle(filtered);
       
       return res.status(StatusCodes.OK).json({sorted});
     } catch(error) {
@@ -35,7 +36,7 @@ export class PhotosController {
   static async patternTitle(req: Request, res: Response) {
     try {
       const { body } = await adapter.get<iPhoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
-      const filtered = FilterParams.patternInTitle(body);
+      const filtered = FilterParams.filterPatternInTitle(body);
       
       return res.status(StatusCodes.OK).json({filtered});
     } catch(error) {
@@ -47,7 +48,7 @@ export class PhotosController {
   static async getFormated(req: Request, res: Response) {
     try {
       const { body } = await adapter.get<iPhoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
-      const sorted = FilterParams.sortByTitle(body);
+      const sorted = SortArrays.sortByTitle(body);
       const formated = FormatArray.format(sorted);
       return res.status(StatusCodes.OK).json({formated});
     } catch(error) {
