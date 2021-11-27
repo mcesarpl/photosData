@@ -5,7 +5,7 @@ import routes from '../routes/router';
 import { StatusCodes, ReasonPhrases } from 'http-status-codes';
 
 class ExpressApp {
-  public app = express();
+  private app = express();
 
   midddlewares() {
     const whitelist = [
