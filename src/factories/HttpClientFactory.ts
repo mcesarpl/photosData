@@ -1,8 +1,8 @@
-import { AxiosAdapter } from "src/adapters/AxiosAdapter";
-import { iHttpClient } from "src/interfaces";
+import { AxiosAdapter } from '../adapters/AxiosAdapter';
+import { IHttpClient } from '../interfaces';
 
 export class HttpClientFactory {
-  public static create(): iHttpClient {
+  public static create(): IHttpClient {
     return new AxiosAdapter();
   }
 }
