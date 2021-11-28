@@ -6,6 +6,7 @@
   "author": "mcesarpl <mcesarpl123@gmail.com>",
   "license": "Apache",
   "scripts": {
+    "build": "tsc",
     "dev": "cross-env NODE_ENV=\"dev\" ts-node-dev -r tsconfig-paths/register -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --no-notify ./src/index.ts",
     "lint": "eslint ./src ./tests --ext .ts",
     "lint:fix": "eslint ./src ./tests --ext .ts --fix",

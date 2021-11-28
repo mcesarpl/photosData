@@ -1,5 +1,19 @@
 version: '2.2'
 services:
+  ts-node-docker:
+    build:
+      context: .
+      dockerfile: ./src/DockerFile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+    container_name: ts-node-docker
+    expose:
+      - '8080'
+    ports:
+      - '8080:8080'
+    command: npm run dev
+  
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
     container_name: es01
