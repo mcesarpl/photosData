@@ -43,9 +43,9 @@ export class PhotosController {
   static async patternTitle(req: Request, res: Response) {
     try {
       const { body } = await adapter.get<Iphoto[]>(enumParams.ARG_TYPE.URLPHONESLIST);
-      const sortedByTitle = FilterParams.filterPatternInTitle(body);
+      const titlePattern = FilterParams.filterPatternInTitle(body);
       
-      return res.status(StatusCodes.OK).json({ sortedByTitle });
+      return res.status(StatusCodes.OK).json({ titlePattern });
     } catch (error) {
       logger.error(error.message);
       return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
